@@ -14,6 +14,14 @@ module.exports = (robot) ->
   robot.hear /bad/i, (res) ->
       res.reply "Nah, it's never bad. It's all good."
 
+  robot.hear /broke/i, (res) ->
+      res.reply "Nah, I meant to break all the things."
+
+  robot.hear /hate/i, (res) ->
+      res.reply "I think you meant love <3"
+
+  robot.hear /boring|atrocious|awful|clumsy|cheap|banal|crazy|insane|fail|dreadful|faulty|buggy|gross|grim|hideous|horrible|monstrous|nonsense|offensive|old|dated|stupid|shoddy|sad|questionable|poor|ugly|unpleasant|unwanted|unwise|vile/i, (res) ->
+      res.reply "I think you mean awesome. Always, awesome."
 
   # Have the robot tell you something randomly from a list
 
@@ -31,3 +39,8 @@ module.exports = (robot) ->
 
   robot.respond /sing me a song/i, (res) ->
     res.reply res.random songs
+
+  smiles = ["https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr02/2013/5/30/18/anigif_enhanced-buzz-3389-1369954359-12.gif", "https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr05/2013/5/30/16/anigif_enhanced-buzz-29323-1369944638-21.gif?no-auto", "https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr05/2013/5/30/18/anigif_enhanced-buzz-12657-1369952487-33.gif?no-auto", "https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr05/2013/5/30/14/anigif_enhanced-buzz-29323-1369940299-3.gif?no-auto", "https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr06/2013/5/30/14/anigif_enhanced-buzz-32228-1369939787-22.gif?no-auto", "https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr05/2013/5/30/17/anigif_enhanced-buzz-12716-1369949373-1.gif?no-auto", "https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr03/2013/5/30/18/anigif_enhanced-buzz-32505-1369952618-7.gif?no-auto"]
+
+  robot.respond /make me smile/i, (res) ->
+    res.reply res.random smiles

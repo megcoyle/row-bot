@@ -2,25 +2,16 @@ module.exports = (robot) ->
 
   # Have robot respond when specific words are used
 
-  robot.respond /terrible/i, (res) ->
-    # Get number of terribles had
-    soTerrible = robot.brain.get('totalTerribles') * 1 or 0
-
-    if soTerrible > 2
-      res.reply "Don't be so hard on yourself :)"
-
-    else
-      res.reply "If by terrible, you mean awesome, then you're right!"
-
-      robot.brain.set 'totalTerribles', soTerrible+1
-
-  robot.respond /worst/i, (res) ->
+  robot.hear /worst/i, (res) ->
       res.reply "Worst? More like the best."
 
-  robot.respond /no/i, (res) ->
+  robot.hear /terrible/i, (res) ->
+      res.reply "If by terrible, you mean awesome, then you're right!"
+
+  robot.hear /no/i, (res) ->
       res.reply "I think you mean yes."
 
-  robot.respond /bad/i, (res) ->
+  robot.hear /bad/i, (res) ->
       res.reply "Nah, it's never bad. It's all good."
 
 

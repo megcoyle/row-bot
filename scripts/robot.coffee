@@ -8,19 +8,31 @@ module.exports = (robot) ->
   robot.hear /terrible/i, (res) ->
       res.reply "If by terrible, you mean awesome, then you're right!"
 
-  robot.hear /no/i, (res) ->
+  robot.hear /\bno\b/i, (res) ->
       res.reply "I think you mean yes."
 
-  robot.hear /bad/i, (res) ->
+  robot.hear /\bbad\b/i, (res) ->
       res.reply "Nah, it's never bad. It's all good."
 
   robot.hear /broke/i, (res) ->
+      res.reply "It's not broken. It's exactly the way it's supposed to be :)"
+
+  robot.hear /mistake/i, (res) ->
       res.reply "Nah, I meant to break all the things."
 
-  robot.hear /hate/i, (res) ->
+  robot.hear /\bhate\b/i, (res) ->
       res.reply "I think you meant love <3"
 
-  robot.hear /boring|atrocious|awful|clumsy|cheap|banal|crazy|insane|fail|dreadful|faulty|buggy|gross|grim|hideous|horrible|monstrous|nonsense|offensive|old|dated|stupid|shoddy|sad|questionable|poor|ugly|unpleasant|unwanted|unwise|vile/i, (res) ->
+  robot.hear /\bnever\b/i, (res) ->
+      res.reply "Never say never :)"
+
+  robot.hear /wrong/i, (res) ->
+      res.reply "Or did you mean...right?"
+
+  robot.hear /whatever/i, (res) ->
+      res.reply "No need for so much 'tude :)"
+
+  robot.hear /boring|atrocious|awful|clumsy|cheap|banal|crazy|insane|fail|dreadful|faulty|buggy|gross|grim|hideous|horrid|horrible|monstrous|nonsense|offensive|old|dated|stupid|shoddy|sad|questionable|poor|ugly|unpleasant|unwanted|unwise|vile|lame|sucks/i, (res) ->
       res.reply "I think you mean awesome. Always, awesome."
 
   # Have the robot tell you something randomly from a list
@@ -44,3 +56,30 @@ module.exports = (robot) ->
 
   robot.respond /make me smile/i, (res) ->
     res.reply res.random smiles
+
+# Have the bot add a new item to an array - need to remove items too
+
+  robot.respond /add a (.*)/i, (res) ->
+    addItem = res.match[1]
+    if addItem is "joke"
+      res.reply "What's your joke?"
+      robot.respond /joke - (.*)/i, (jokeRes) ->
+        newJoke = jokeRes.match[1]
+        jokes.push newJoke
+    else if addItem is "quote"
+      res.reply "What's your quote?"
+      robot.respond /quote - (.*)/i, (quoteRes) ->
+        newQuote = quoteRes.match[1]
+        inspirationalQuotes.push newQuote
+    else if addItem is "song"
+      res.reply "What's your song?"
+      robot.respond /song - (.*)/i, (songRes) ->
+        newSong = songRes.match[1]
+        songs.push newSong
+    else if addItem is "smile"
+      res.reply "What's your gif url?"
+      robot.respond /url - (.*)/i, (smileRes) ->
+        newSmile = smileRes.match[1]
+        smiles.push newSmile
+    else
+      res.reply "Sorry, that won't work."
